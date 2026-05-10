@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "c1f1f2e1-4c12-4c6e-8d9e-1e1b1e1b1e1b",
+		"name": "School Management API",
+		"description": "API collection for School Management System including endpoints to add a school and list schools sorted by geographical proximity.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add School",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"ABC School\",\n  \"address\": \"Delhi\",\n  \"latitude\": 28.6139,\n  \"longitude\": 77.2090\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/addSchool",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addSchool"
+					]
+				},
+				"description": "Adds a new school to the database. Requires name, address, latitude, and longitude."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"ABC School\",\n  \"address\": \"Delhi\",\n  \"latitude\": 28.6139,\n  \"longitude\": 77.2090\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/addSchool",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"addSchool"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"School added successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"ABC School\",\n        \"address\": \"Delhi\",\n        \"latitude\": 28.6139,\n        \"longitude\": 77.209\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "List Schools",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/listSchools?latitude=28.6139&longitude=77.2090",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"listSchools"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "28.6139"
+						},
+						{
+							"key": "longitude",
+							"value": "77.2090"
+						}
+					]
+				},
+				"description": "Lists all schools sorted by proximity to the provided user latitude and longitude."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/listSchools?latitude=28.6139&longitude=77.2090",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"listSchools"
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "28.6139"
+								},
+								{
+									"key": "longitude",
+									"value": "77.2090"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"count\": 1,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"ABC School\",\n            \"address\": \"Delhi\",\n            \"latitude\": 28.6139,\n            \"longitude\": 77.209,\n            \"distance\": \"0.00 km\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
